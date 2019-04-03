@@ -10,11 +10,10 @@ pipeline {
                 '''
             }
         }
+        stage('Send') {
+            steps {
+                logstashSend failBuild: true, maxLines: 1000
+            }
+        }
     }
 }
- node('master') {
-        sh'''
-        echo 'Hello, world!'
-        '''
-        logstashSend failBuild: true, maxLines: 1000
- }
